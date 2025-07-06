@@ -1,0 +1,66 @@
+# /Users/zhu_yangyang/Desktop/Unsplash_Search_Project/scripts/templates/search_results.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ukiyoe Search Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .search-info {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .result-card {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .result-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        .similarity-score {
+            color: #2c5282;
+            font-weight: bold;
+        }
+        .image-id {
+            color: #666;
+            font-size: 0.9em;
+        }
+        h1 {
+            color: #2d3748;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="search-info">
+        <h1>Search Results</h1>
+        <p><strong>Query:</strong> {query}</p>
+        <p><strong>Number of results:</strong> {num_results}</p>
+    </div>
+    
+    <div class="results-grid">
+        {results}
+    </div>
+</body>
+</html>
