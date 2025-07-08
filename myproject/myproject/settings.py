@@ -16,8 +16,8 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# 上传的媒体文件将存储在项目目录下的 media 文件夹中
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# 修改MEDIA_ROOT指向实际的图片目录
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'ukiyoe_dataset', 'photos')
 MEDIA_URL = '/media/'
 
 

@@ -15,17 +15,14 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 # myproject/urls.py
-
-# myproject/urls.py
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
-from search_app.views import text_search  # 确保只引入需要的视图
+from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('search', text_search, name='text_search'),
+    path('', include('search_app.urls')),
 ]
 
 if settings.DEBUG:

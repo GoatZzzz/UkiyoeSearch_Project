@@ -19,7 +19,8 @@ const SearchResultsPage = () => {
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
-  const itemsPerPage = 10;
+  const itemsPerPage = 12; // 增加每页显示数量
+  const maxResults = 500; // 从后端获取更多结果，支持更多页面浏览
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -30,7 +31,11 @@ const SearchResultsPage = () => {
         const response = await fetch('http://localhost:8000/search', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ query })
+          body: JSON.stringify({ 
+            query,
+            page: 1,
+            per_page: maxResults 
+          })
         });
         if (response.ok) {
           const data = await response.json();
@@ -59,7 +64,14 @@ const SearchResultsPage = () => {
   return (
     <Container maxWidth="lg" sx={{ py: 4 }}>
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
-        <Typography variant="h4">搜索结果: {query}</Typography>
+        <Box>
+          <Typography variant="h4">搜索结果: {query}</Typography>
+          {!loading && results.length > 0 && (
+            <Typography variant="body2" color="text.secondary" mt={1}>
+              共找到 {results.length} 个相关结果
+            </Typography>
+          )}
+        </Box>
         <Button variant="outlined" onClick={() => navigate('/')}>
          Continue Search
         </Button>
@@ -74,9 +86,9 @@ const SearchResultsPage = () => {
         </Typography>
       ) : (
         <>
-          <Grid container spacing={2}>
+          <Grid container spacing={3}>
             {currentItems.map((item, index) => (
-              <Grid item xs={12} sm={6} md={4} lg={3} key={`${item.rank}-${index}`}>
+              <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={`${item.rank}-${index}`}>
                 <Card sx={{ borderRadius: '12px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
                   <CardActionArea
                     component="a"
@@ -114,8 +126,21 @@ const SearchResultsPage = () => {
               </Grid>
             ))}
           </Grid>
-          <Box mt={4} display="flex" justifyContent="center">
-            <Pagination count={totalPages} page={page} onChange={handlePageChange} color="primary" />
+          <Box mt={4} display="flex" justifyContent="center" alignItems="center" flexDirection="column">
+            <Typography variant="body2" color="text.secondary" mb={2}>
+              显示第 {startIndex + 1} - {Math.min(endIndex, results.length)} 个结果，共 {results.length} 个
+            </Typography>
+            <Pagination 
+              count={totalPages} 
+              page={page} 
+              onChange={handlePageChange} 
+              color="primary"
+              size="large"
+              showFirstButton
+              showLastButton
+              siblingCount={2}
+              boundaryCount={1}
+            />
           </Box>
         </>
       )}

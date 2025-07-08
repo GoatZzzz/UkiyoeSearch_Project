@@ -1,0 +1,27 @@
+{
+  "migration_date": "2025-07-09T06:22:53.567724",
+  "system_info": {
+    "python_version": "3.10.12 (main, Nov  6 2024, 20:22:13) [GCC 11.4.0]",
+    "torch_version": "2.5.1+cu124",
+    "cuda_available": true,
+    "device": "cuda"
+  },
+  "model_info": {
+    "old_model": "ViT-B/32",
+    "new_model": "ViT-L/14",
+    "old_dimensions": 512,
+    "new_dimensions": 768,
+    "improvement": "50% more feature capacity"
+  },
+  "dataset_info": {
+    "total_images": 58612,
+    "feature_dimensions": 768,
+    "feature_file_size_mb": 85.8575439453125
+  },
+  "index_info": {
+    "index_dimensions": 768,
+    "index_size": 58612,
+    "index_file_size_mb": 172.45588207244873
+  },
+  "test_results": {}
+}
