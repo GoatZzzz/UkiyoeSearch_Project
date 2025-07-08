@@ -19,6 +19,6 @@ for f in vector_files[:3]:  # 显示前3个文件
 # 合并向量
 try:
     vectors = np.concatenate([np.load(f) for f in vector_files], axis=0)
-    print("合并后的向量维度:", vectors.shape)  # 预期输出 (58000, 512)
+    print("合并后的向量维度:", vectors.shape)  # 预期输出 (58000, 768)
 except Exception as e:
     print("合并失败:", str(e))

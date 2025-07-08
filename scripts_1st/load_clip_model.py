@@ -2,9 +2,9 @@ import clip
 import torch
 from PIL import Image
 
-# 加载 CLIP 模型
+# 加载 CLIP 模型 - 使用 ViT-L/14 (768维特征)
 device = "cuda" if torch.cuda.is_available() else "cpu"
-model, preprocess = clip.load("ViT-B/32", device=device)
+model, preprocess = clip.load("ViT-L/14", device=device)
 
 # 定义函数，计算一批图像的特征向量
 def compute_clip_features(photos_batch):
@@ -15,7 +15,7 @@ def compute_clip_features(photos_batch):
     photos_preprocessed = torch.stack([preprocess(photo) for photo in photos]).to(device)
 
     with torch.no_grad():
-        # 编码图像并计算特征向量
+        # 编码图像并计算特征向量 (现在是768维)
         photos_features = model.encode_image(photos_preprocessed)
         photos_features /= photos_features.norm(dim=-1, keepdim=True)  # 标准化
 

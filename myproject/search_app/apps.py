@@ -32,17 +32,17 @@ class SearchAppConfig(AppConfig):
         global_vars.device = device
 
         #######################
-        # 2) 加载 CLIP (ViT-B/32)
+        # 2) 加载 CLIP (ViT-L/14) - 768维特征
         #######################
         import clip
-        clip_model, clip_preprocess = clip.load("ViT-B/32", device=device)
+        clip_model, clip_preprocess = clip.load("ViT-L/14", device=device)
         global_vars.clip_model = clip_model
         global_vars.clip_preprocess = clip_preprocess
 
         #######################
-        # 3) 加载 FAISS 索引
+        # 3) 加载 FAISS 索引 - 使用新的ViT-L/14索引
         #######################
-        faiss_index_path = "/home/zhu01/UkiyoeSearch_Project/ukiyoe_dataset/index/faiss_index_ivf.index"
+        faiss_index_path = "/home/zhu01/UkiyoeSearch_Project/ukiyoe_dataset/index/faiss_index_ivf_vit_l14.index"
         faiss_index = faiss.read_index(faiss_index_path)
         global_vars.faiss_index = faiss_index
 

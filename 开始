@@ -1,0 +1,58 @@
+启动 Django 后端的步骤如下：
+	1.	激活虚拟环境
+在终端中进入你的项目根目录（包含 manage.py 文件的目录），并激活你之前创建的虚拟环境。例如，如果你的虚拟环境文件夹名称为 venv，在 macOS/Linux 下执行：
+
+source venv/bin/activate
+
+Windows 下使用：
+
+venv\Scripts\activate
+
+
+	2.	检查 ALLOWED_HOSTS 配置
+确保在你的 myproject/settings.py 文件中，ALLOWED_HOSTS 包含了你将要使用的主机名（例如 127.0.0.1、localhost 等）。例如：
+
+ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
+
+
+	3.	执行数据库迁移（如果还没做）
+即使当前项目不使用数据库模型，建议先运行迁移命令：
+
+python manage.py migrate
+
+
+	4.	启动开发服务器
+运行下面的命令来启动 Django 开发服务器（这里使用 0.0.0.0:8000 表示服务器监听所有网络接口的 8000 端口）：
+
+python manage.py runserver 0.0.0.0:8000
+
+如果你只想在本地访问，也可以直接使用：
+
+python manage.py runserver
+
+默认会启动在 http://127.0.0.1:8000。
+
+	5.	验证后端是否正常启动
+当服务器启动后，终端会显示类似如下的信息：
+
+Watching for file changes with StatReloader
+Performing system checks...
+System check identified no issues (0 silenced).
+February 04, 2025 - 15:00:00
+Django version 5.1.5, using settings 'myproject.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+此时你可以在浏览器访问 http://127.0.0.1:8000/test（或其他你注册的 URL），或使用 curl 命令测试接口。
+
+总结步骤：
+	•	激活虚拟环境；
+	•	运行 python manage.py migrate；
+	•	启动服务器 python manage.py runserver 0.0.0.0:8000；
+	•	检查浏览器或 curl 请求是否能获得预期响应。
+
+这样你的 Django 后端就启动成功了。如果遇到任何错误信息，请根据提示检查配置或依赖。
+
+
+cd myproject去启动后端python manage.py runserver 0.0.0.0:8000
+，cd my-react-app去启动前端npm start

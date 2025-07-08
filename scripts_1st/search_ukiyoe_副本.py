@@ -21,9 +21,9 @@ class UkiyoeSearcher:
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
         print(f"Using device: {self.device}")
         
-        # 初始化CLIP模型（zero-shot设置）
+        # 初始化CLIP模型（zero-shot设置）- 使用 ViT-L/14 (768维特征)
         print("Loading CLIP model for zero-shot search...")
-        self.model, self.preprocess = clip.load("ViT-B/32", device=self.device)
+        self.model, self.preprocess = clip.load("ViT-L/14", device=self.device)
         
         # 设置路径
         self.photos_dir = self.base_path / "ukiyoe_dataset" / "photos"

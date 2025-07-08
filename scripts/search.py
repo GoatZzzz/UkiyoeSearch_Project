@@ -15,7 +15,7 @@ def load_metadata(metadata_path):
 
 def search_vectors(query_vector, index, top_k=5):
     """在FAISS索引中检索相似向量, 返回 (distances, indices)"""
-    # 如果是一维 (512,) 需要 reshape
+    # 如果是一维 (768,) 需要 reshape
     if query_vector.ndim == 1:
         query_vector = query_vector.reshape(1, -1).astype('float32')
     else:
@@ -25,8 +25,8 @@ def search_vectors(query_vector, index, top_k=5):
     return distances[0], indices[0]
 
 def main():
-    # 1. 加载已经构建并保存好的索引
-    index_path = "/Users/zhu_yangyang/Desktop/UkiyoeSearch_Project/ukiyoe_dataset/index/faiss_index_ivf.index"
+    # 1. 加载已经构建并保存好的索引 - 使用新的ViT-L/14索引
+    index_path = "/Users/zhu_yangyang/Desktop/UkiyoeSearch_Project/ukiyoe_dataset/index/faiss_index_ivf_vit_l14.index"
     index = load_faiss_index(index_path)
     print("索引已加载, 共包含向量数量:", index.ntotal)
 

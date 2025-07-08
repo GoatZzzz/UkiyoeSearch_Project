@@ -3,15 +3,15 @@ import numpy as np
 
 # 1. Define or load your vectors:
 # Option A: Load from a .npy file
-# vectors = np.load('my_vectors.npy')   # shape must be (58000, 512), for example
+# vectors = np.load('my_vectors.npy')   # shape must be (58000, 768), for example
 
 # Option B: Generate random vectors for testing
-vectors = np.random.random((58000, 512))
+vectors = np.random.random((58000, 768))
 
 # 2. Convert to float32 if necessary
 vectors_f32 = vectors.astype('float32')
 
-d = vectors_f32.shape[1]  # 512
+d = vectors_f32.shape[1]  # 768
 index = faiss.IndexFlatL2(d)  # A flat (L2) index
 
 # 3. Build the index
